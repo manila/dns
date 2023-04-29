@@ -63,6 +63,22 @@ resource "cloudflare_record" "manila_me_aaaa_3" {
   value   = "2606:50c0:8003::153"
 }
 
+resource "cloudflare_record" "manila_me_txt_spf" {
+  zone_id = var.cloudflare_zone_id
+  name    = "manila.me"
+  type    = "TXT"
+  ttl     = 1
+  value   = "v=spf1 include:_spf.google.com ~all"
+}
+
+resource "cloudflare_record" "manila_me_txt_dkim" {
+  zone_id = var.cloudflare_zone_id
+  name    = "google._domainkey"
+  type    = "TXT"
+  ttl     = 1
+  value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmUkaH7KsvBLxqCwTyiX7jQ6bV7yml0dY0kF2KX7J+Kz/EpNmZViOHf5kDLzJDti2PcgllQ4nWnSpLhKBvzabPc/XDqDVQ+B9WPqCs5s2P1ZqqP1Wn2S+JwHM9tc7UcHZ9+Y4KN1ODjD55hdNYj8fPwHD8ImK3BC8v8ItShyfvnXaATTr67YHigotCMvX0VqP75KMFcyhi6eEBn74Qq3sYxKFMDas5BED+c8UXxaTR4xQTbrVz3uI1Ui4xKrku44NvtcIZg2xPPv8vI/pIqO620u23GJ50e6JzCVn4OMpUdC58twlKmbEQVLkymmvInFfGN7wXH8dPTjGrcC+X/HQ8wIDAQAB"
+}
+
 resource "cloudflare_record" "manila_me_txt_dmarc" {
   zone_id = var.cloudflare_zone_id
   name    = "_dmarc"
