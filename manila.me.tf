@@ -63,6 +63,14 @@ resource "cloudflare_record" "manila_me_aaaa_3" {
   value   = "2606:50c0:8003::153"
 }
 
+resource "cloudflare_record" "manila_me_txt__atproto_manila_me" {
+  zone_id = var.cloudflare_zone_id
+  name    = "_atproto.manila.me"
+  type    = "TXT"
+  ttl     = 1
+  value   = "did=did:plc:5e4xpjnn5xvz4exenzffqi7d"
+}
+
 resource "cloudflare_record" "manila_me_txt_spf" {
   zone_id = var.cloudflare_zone_id
   name    = "manila.me"
