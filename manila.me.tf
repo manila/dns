@@ -87,6 +87,14 @@ resource "cloudflare_record" "manila_me_txt_dmarc" {
   value   = "v=DMARC1; p=none; rua=mailto:dmarc@manila.me"
 }
 
+resource "cloudflare_record" "manila_me_txt_google-site-verification" {
+  zone_id = var.cloudflare_zone_id
+  name    = "manila.me"
+  type    = "TXT"
+  ttl     = 1
+  value   = "google-site-verification=iCKpN6g3vyoLd0T5m0LQve6oBhq-MzLe_MLxBy0n4Xw"
+}
+
 resource "cloudflare_record" "manila_me_mx_0" {
   zone_id  = var.cloudflare_zone_id
   name     = "manila.me"
